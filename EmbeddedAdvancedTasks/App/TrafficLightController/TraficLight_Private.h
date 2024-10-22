@@ -11,10 +11,14 @@
 
 #define STACK_POINTER_INIT    -1
 
-static Stack_Status_t Stack_Push(u8 Copy_u8Data);
-static Stack_Status_t Stack_Pop(u8* Copy_pu8Data);
-static u8 Stack_u8GetCurrentState(void);
+static Stack_Status_t Stack_Push(void(*LocalFptr)(void));
+static Stack_Status_t Stack_Pop(void);
 static void Stack_CallBack(void);
+
+static void Red_Led(void);
+static void Yellow_Led(void);
+static void Green_Led(void);
+static void Counting_Func(void);
 
 
 
