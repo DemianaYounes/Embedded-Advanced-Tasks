@@ -30,7 +30,7 @@ static void Stack_CallBack()
 	static u8 Local_u8Counter=0;
 	Local_u8Counter++;
 	Counter=Local_u8Counter;
-	if(Local_u8Counter==SECOND_NUMBERS)
+	if(Local_u8Counter==NUMBER_OF_SECOND)
 	{
 		DIO_WritePin(Data+LED_RED_PIN,LOW);
 		Stack_Pop(&Data);
