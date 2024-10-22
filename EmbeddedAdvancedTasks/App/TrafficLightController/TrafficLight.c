@@ -19,27 +19,38 @@
 #include "TrafficLight_Cfg.h"
 
 
-
-static u8 Stcak_Arr[STACK_SIZE];
+static void (*Stcak_Arr[STACK_SIZE])(void);
+static void (*currentState)(void) = NULL;
 static s8 StackPointer=STACK_POINTER_INIT;
-static volatile u8 Data=5;
-static volatile u8 Counter=0;
 
 static void Stack_CallBack()
 {
 	static u8 Local_u8Counter=0;
 	Local_u8Counter++;
-	Counter=Local_u8Counter;
 	if(Local_u8Counter==NUMBER_OF_SECOND)
 	{
-		DIO_WritePin(Data+LED_RED_PIN,LOW);
-		Stack_Pop(&Data);
-		DIO_WritePin(Data+LED_RED_PIN,HIGH);
+		Stack_Pop();
+		if (StackPointer == -1)
+	    {
+			// If the stack is empty, reset and start with red
+			Stack_Push(Red_Led);
+		}
+		else
+		{
+			// Cycle through states
+			if (currentState == Red_Led) {
+				Stack_Push(Yellow_Led);
+				} else if (currentState == Green_Led) {
+				Stack_Push(Red_Led);
+				} else if (currentState == Yellow_Led) {
+				Stack_Push(Green_Led);
+			}
+		}
 		Local_u8Counter=0;
 	}
 	
 }
-void TracfficLight_voidInit(void)
+void TrafficLight_voidInit(void)
 {
 	DIO_Init();
 	LCD_Init();
@@ -50,65 +61,33 @@ void TracfficLight_voidInit(void)
 	Timer1_OCA_SetCallBack(Stack_CallBack);
 	sei();
 	Timer1_OCA_InterruptEnable();
+	
+	/* Initialize the stack with state functions*/
+	Stack_Push(Green_Led);
+	Stack_Push(Yellow_Led);
+	Stack_Push(Red_Led);
+	Stack_Pop(); // Pop the first state to set currentState
 }
 
-void TracfficLight_voidRunnable(void)
+void TrafficLight_voidRunnable(void)
 {
-	Stack_Status_t Local_StackStatus=STACK_EMPTY;
-	if(StackPointer==STACK_POINTER_INIT)
+	if(currentState!=NULL)
 	{
-		Local_StackStatus=Stack_Push(GRREN);
-		if(Local_StackStatus==STACK_DONE)
-		{
-			Local_StackStatus=Stack_Push(YELLOW);
-			if(Local_StackStatus==STACK_DONE)
-			{
-				Local_StackStatus=Stack_Push(RED);
-			}
-		}
+		currentState();
 	}
 	else
 	{
-		LCD_SetCurser(1,0);
-		LCD_WriteString("Sec:");
-		while(StackPointer!=STACK_POINTER_INIT)
-		{
-			switch(Data)
-			{
-				case RED:
-				LCD_SetCurser(0,12);
-				LCD_WriteString("      ");
-				LCD_SetCurser(0,0);
-				LCD_WriteString("Stop Driving");
-				break;
-				case YELLOW:
-				LCD_SetCurser(0,0);
-				LCD_WriteString("Stopping Soon");
-				break;
-				case GRREN:
-				LCD_SetCurser(0,13);
-				LCD_WriteString("      ");
-				LCD_SetCurser(0,0);
-				LCD_WriteString("Start Driving");
-				break;
-				default:
-				LCD_SetCurser(0,0);
-				LCD_WriteString(" Traffic Light ");
-			}
-			LCD_SetCurser(1,5);
-			LCD_WriteNumber(Counter);
-		}
+		/*Do Nothing*/
 	}
 
-	
 }
 
-static Stack_Status_t Stack_Push(u8 Copy_u8Data)
+static Stack_Status_t Stack_Push(void(*LocalFptr)(void))
 {
 	Stack_Status_t Local_StackStatus=STACK_EMPTY;
 	if(StackPointer<STACK_SIZE-1)
 	{
-		Stcak_Arr[++StackPointer]=Copy_u8Data;
+		Stcak_Arr[++StackPointer]=LocalFptr;
 		Local_StackStatus=STACK_DONE;
 	}
 	else
@@ -118,12 +97,12 @@ static Stack_Status_t Stack_Push(u8 Copy_u8Data)
 	return Local_StackStatus;
 }
 
-static Stack_Status_t Stack_Pop(u8* Copy_pu8Data)
+static Stack_Status_t Stack_Pop(void)
 {
 	Stack_Status_t Local_StackStatus=STACK_EMPTY;
 	if(StackPointer>-1)
 	{
-		*Copy_pu8Data=Stcak_Arr[StackPointer--];
+		currentState=Stcak_Arr[StackPointer--];
 		Local_StackStatus=STACK_DONE;
 	}
 	else
@@ -132,11 +111,34 @@ static Stack_Status_t Stack_Pop(u8* Copy_pu8Data)
 	}
 	return Local_StackStatus;
 }
-static u8 Stack_u8GetCurrentState(void)
+
+static void Red_Led(void)
 {
-	if(StackPointer>-1)
-	{
-		return Stcak_Arr[StackPointer];
-	}
-	return STACK_POINTER_INIT;
+	DIO_WritePin(LED_YELLOW_PIN,LOW);
+	DIO_WritePin(LED_GREEN_PIN,LOW);
+	DIO_WritePin(LED_RED_PIN,HIGH);
+	LCD_SetCurser(0,12);
+	LCD_WriteString("      ");
+	LCD_SetCurser(0,0);
+	LCD_WriteString("Stop Driving");
+}
+
+static void Yellow_Led(void)
+{
+	DIO_WritePin(LED_GREEN_PIN,LOW);
+	DIO_WritePin(LED_RED_PIN,LOW);
+	DIO_WritePin(LED_YELLOW_PIN,HIGH);
+	LCD_SetCurser(0,0);
+	LCD_WriteString("Stopping Soon");
+}
+
+static void Green_Led(void)
+{
+	DIO_WritePin(LED_RED_PIN,LOW);
+	DIO_WritePin(LED_YELLOW_PIN,LOW);
+	DIO_WritePin(LED_GREEN_PIN,HIGH);
+	LCD_SetCurser(0,13);
+	LCD_WriteString("      ");
+	LCD_SetCurser(0,0);
+	LCD_WriteString("Start Driving");
 }
