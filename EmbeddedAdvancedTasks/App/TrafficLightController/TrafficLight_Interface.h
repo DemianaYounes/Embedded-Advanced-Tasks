@@ -21,7 +21,7 @@ typedef enum{
 	GRREN,
 	}TrafficLight_Status_t;
 
-void TracfficLight_voidRunnable(void);
-void TracfficLight_voidInit(void);
+void TrafficLight_voidRunnable(void);
+void TrafficLight_voidInit(void);
 
 #endif /* TRAFFICLIGHT_INTERFACE_H_ */
