@@ -16,7 +16,7 @@
 #define LED_BLUE_PIN    PINC2
 
 #define ONE_SECOND_WITH_64PRESCALLER_VALUE    124999
-#define SECOND_NUMBERS          7
+#define NUMBER_OF_SECOND         7
 
 
 #endif /* TRAFFICLIGHT_CFG_H_ */
