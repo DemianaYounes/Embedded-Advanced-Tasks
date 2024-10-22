@@ -31,7 +31,7 @@ static void Stack_CallBack()
 	{
 		Stack_Pop();
 		if (StackPointer == -1)
-	    {
+	        {
 			// If the stack is empty, reset and start with red
 			Stack_Push(Red_Led);
 		}
