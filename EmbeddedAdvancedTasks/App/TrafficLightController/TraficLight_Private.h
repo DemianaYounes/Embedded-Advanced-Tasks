@@ -18,7 +18,6 @@ static void Stack_CallBack(void);
 static void Red_Led(void);
 static void Yellow_Led(void);
 static void Green_Led(void);
-static void Counting_Func(void);
 
 
 
