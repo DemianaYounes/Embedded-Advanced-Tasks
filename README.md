@@ -4,7 +4,9 @@ This repository focuses on evaluating different tasks related to the performance
 
 ## Task 1: Traffic light controller using a stack based state machine
 This project implements a traffic light system using three LEDs (green, yellow, and red) on an ATmega32 microcontroller. The stack-based state machine is managed via Timer1 in CTC mode to control the light transitions based on traffic rules.
-![image](https://drive.google.com/file/d/1nPKmaiIVc9V-ZyoxdPg5z079P6Zbm9DY/view?usp=drive_link)
+
+<img src="https://github.com/user-attachments/assets/ceba3574-69ee-4328-9a69-fa5f74c28f57" alt="Traffic Light" width="800" height="400"/>
+
 ## State Machine Designs
 ### 1. Switch Case State Machine
 ### Pros:
@@ -33,3 +35,13 @@ This project implements a traffic light system using three LEDs (green, yellow, 
 - **Overhead of Stack Management:** Requires careful management of the stack to ensure correct state transitions, which can complicate implementation.
 - **Potential for Stack Overflow:** If the stack grows too large due to too many nested states, it can lead to overflow issues.
 - **Complex Debugging:** Tracing through a stack-based state machine can be more challenging, especially with many nested states.
+## Practical (Output)
+- **Red Led**
+ <img src="https://github.com/user-attachments/assets/d5ef5464-fbd4-476e-8bc3-12b951725ce4" alt="Traffic Light" width="600" height="300"/>
+ 
+- **Yellow Led**
+ <img src="https://github.com/user-attachments/assets/0b659254-b564-45f5-80ef-e53f1f85bcd0" alt="Traffic Light" width="600" height="300"/>
+
+- **Green Led**
+ <img src="https://github.com/user-attachments/assets/fd4ef7c0-268c-4347-b7de-234b42021828" alt="Traffic Light" width="600" height="300"/>
+ 
