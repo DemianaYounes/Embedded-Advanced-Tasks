@@ -44,4 +44,10 @@ This project implements a traffic light system using three LEDs (green, yellow, 
 
 - **Green Led**
  <img src="https://github.com/user-attachments/assets/fd4ef7c0-268c-4347-b7de-234b42021828" alt="Traffic Light" width="600" height="300"/>
- 
+
+ ## Installation & Setup
+- **Clone the repository:**
+```bash
+https://github.com/DemianaYounes/Embedded-Advanced-Tasks.git
+
+
