@@ -7,9 +7,6 @@
 
 #include "StdTypes.h"
 
-#include "DIO_Interface.h"
-
-
 #include "FixedPoint_Interface.h"
 #include "FixedPoint_Private.h"
 #include "FixedPoint_Cfg.h"
