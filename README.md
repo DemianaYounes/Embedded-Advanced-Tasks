@@ -73,8 +73,9 @@ Fixed-point math represents fractional values using integers, ideal for embedded
 - Event-driven architectures are particularly well-suited for real-time embedded applications and applications concerned with energy consumption. In an event-driven architecture, the system remains in an idle or low-power state until an event triggers an action to be performed.
 
 - This project implements an event-driven architecture using an ATmega microcontroller to manage button press events through interrupts and a circular queue. The system is designed to be energy-efficient, responsive, and scalable, making it suitable for real-time embedded applications.
-<img src="https://github.com/user-attachments/assets/99944726-4ff0-4d9b-9538-db1cfd279a95" alt="Traffic Light" width="800" height="400"/>
-
+<div style="text-align: center;">
+    <img src="https://github.com/user-attachments/assets/99944726-4ff0-4d9b-9538-db1cfd279a95" alt="Traffic Light" width="900" height="400"/>
+</div>
 ### Architectural Considerations
 
 The event-driven architecture can be implemented in different ways, depending on the performance requirements of the system:
