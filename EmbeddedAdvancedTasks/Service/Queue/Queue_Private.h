@@ -13,7 +13,7 @@
 #define FRONT_START     -1
 
 static CircularQueue_Status_type IsFull(CircularQueue_type*Queue);
-static CircularQueue_Status_type IsEmpty(CircularQueue_type*Queue);
+//static CircularQueue_Status_type IsEmpty(CircularQueue_type*Queue);
 
 
 

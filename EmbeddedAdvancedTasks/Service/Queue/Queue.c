@@ -29,7 +29,7 @@ static CircularQueue_Status_type IsFull(CircularQueue_type*Queue)
 	return Queue_status;
 }
 
-static CircularQueue_Status_type IsEmpty(CircularQueue_type*Queue)
+CircularQueue_Status_type IsEmpty(CircularQueue_type*Queue)
 {
 	CircularQueue_Status_type Queue_status=QUEUE_DONE;
 	if((Queue->Front==FRONT_START) && (Queue->Rear==REAR_START))

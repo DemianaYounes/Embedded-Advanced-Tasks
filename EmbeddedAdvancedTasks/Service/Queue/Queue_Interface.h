@@ -26,5 +26,6 @@ typedef enum{
 void CircularQueue_Init(CircularQueue_type*Queue);
 void Enqueue(CircularQueue_type*Queue, u8 Copy_u8Data);
 void DeQueue(CircularQueue_type*Queue, u8*Copy_u8Data);
+CircularQueue_Status_type IsEmpty(CircularQueue_type*Queue);
 
 #endif /* QUEUE_INTERFACE_H_ */
