@@ -171,7 +171,7 @@ static void FlappyBird_voidStartGame()
         Local_u8Offest = 0; // Reset offset for obstacles
         for (Local_u8Iterator = 1; Local_u8Iterator < 128; Local_u8Iterator++) // Loop through screen width
         {
-            if (Local_u8Iterator % 40 == 0) // Check if it's time to update obstacles
+            if (Local_u8Iterator % 30 == 0) // Check if it's time to update obstacles
             {
                 Local_u8Offest += 10; // Increment offset
                 FlappyBird_voidUpdateObstcales(Local_u8Offest); // Update obstacles
