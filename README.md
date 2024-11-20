@@ -154,13 +154,6 @@ There are several solutions that can address the tearing issue in embedded syste
 - **Cons**:
   - Requires tight control over rendering logic.
 - **Suitability**: Feasible for ATmega32, particularly with time-sliced updates.
-#### 6. Efficient GLCD Driver Optimization
-- **What it is**: Optimize the GLCD driver to speed up write operations and reduce redundant commands.
-- **Pros**:
-  - Reduces tearing by accelerating display updates.
-- **Cons**:
-  - Requires in-depth knowledge of the GLCD communication protocol.
-- **Suitability**: Directly improves performance for ATmega32 systems.
 ## Enhancements to Existing Solutions
 
 #### Critical Section Updates
