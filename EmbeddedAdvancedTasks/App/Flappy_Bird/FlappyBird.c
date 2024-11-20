@@ -149,11 +149,10 @@ void FlappyBird_voidRunnable()
  */
 static void FlappyBird_voidStartGame()
 {
-    u8 Local_u8Iterator, Local_u8GameOver = 0, Local_u8Iterator2;
+    u8 Local_u8Iterator, Local_u8GameOver = 0;
     u8 Local_u8Offest = 0; // Offset for obstacles
     u8 Local_u8StartCounter = 0; // Counter for game state
     u8 Local_u8BirdSpeed = 0; // Speed of the bird
-    u8 Local_u8Step = 0; // Step variable for game logic
     GLCD_voidClear(); // Clear the GLCD for a fresh frame
     while (READ_BIT(PauseStartFlag, 2) == START_VALUE) // Continue while game is active
     {   
