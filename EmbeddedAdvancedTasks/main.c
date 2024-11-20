@@ -15,6 +15,7 @@
 
 #define TRAFFIC_LIGHT    0
 #define EVENT_BASED      2
+#define FLAPPY_BIRD      3
 #define APPLICATION      EVENT_BASED
 
 #if APPLICATION == TRAFFIC_LIGHT
@@ -35,6 +36,15 @@ int main()
 	while(1)
 	{
 		EventBased_Runnable();
+	}
+}
+#elif APPLICATION==FLAPPY_BIRD
+int main()
+{
+	FlappyBird_voidInit();
+	while(1)
+	{
+		FlappyBird_voidRunnable();
 	}
 }
 #endif
